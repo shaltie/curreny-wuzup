@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="widget_name">Widget Currency Wuzup</string>
+    <string name="app_name">Currency Wuzup</string>
+    <string name="config">Config</string>
+    <string name="update">Update</string>
+    <string name="count">Count</string>
+    <string name="ok">Ok</string>
+    <string name="title_activity_config">ConfigActivity</string>
+    <string name="action_settings">Settings</string>
+</resources>

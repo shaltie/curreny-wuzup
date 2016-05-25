@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <RadioGroup
+        android:id="@+id/rgCurrencyZone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <RadioButton
+            android:id="@+id/euroZone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Euro Wuzup">
+        </RadioButton>
+        <RadioButton
+            android:id="@+id/rubZone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="Ruble Wuzup">
+        </RadioButton>
+        <RadioButton
+            android:id="@+id/usdZone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dollar Wuzup">
+        </RadioButton>
+    </RadioGroup>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onClick"
+        android:text="@string/ok">
+    </Button>
+</LinearLayout>

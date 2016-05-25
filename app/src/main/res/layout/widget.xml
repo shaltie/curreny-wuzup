@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/widget_layout"
+    android:padding="0dp">
+
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:id="@+id/headerLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/header_layout"
+        android:padding="0dp">
+        <!--#c4ffa800-->
+        <TextView
+            android:id="@+id/txtUpdated"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Updated:"
+            android:paddingLeft="30px"
+            android:layout_marginBottom="5px"
+            android:layout_marginRight="10dp"
+            android:layout_weight="0"
+            android:textColor="#f7d071"
+            android:textSize="14dp"
+            android:textAppearance="?android:attr/textAppearanceLarge">
+        </TextView>
+
+        <TextView
+            android:id="@+id/tvUpdate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="3dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="5px"
+            android:layout_weight="100"
+            android:textColor="#f7d071"
+            android:textSize="15dp"
+            android:textAppearance="?android:attr/textAppearanceLarge">
+        </TextView>
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="wuzup"
+            android:fontFamily=""
+            android:id="@+id/BtnUpdate"
+            android:padding="8dp"
+            android:background="@drawable/updbtn"
+            android:layout_weight="0"
+            android:stateListAnimator="@null"
+            android:textColor="#ffffff"
+            >
+        </Button>
+
+    </LinearLayout>
+
+
+
+
+    <ListView
+        android:id="@+id/lvList"
+        android:paddingLeft="20px"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/headerLayout">
+    </ListView>
+
+
+
+
+</RelativeLayout>
