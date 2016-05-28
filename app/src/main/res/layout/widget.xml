@@ -20,7 +20,7 @@
             android:id="@+id/txtUpdated"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Updated:"
+            android:text="@string/updated"
             android:paddingLeft="30px"
             android:layout_marginBottom="5px"
             android:layout_marginRight="10dp"
@@ -43,11 +43,20 @@
             android:textAppearance="?android:attr/textAppearanceLarge">
         </TextView>
 
+        <ProgressBar
+            android:id="@+id/updateProgressBar"
+            android:layout_width="wrap_content"
+            android:paddingTop="30px"
+            android:paddingRight="20px"
+            android:paddingLeft="20px"
+            android:layout_height="wrap_content"
+            style="@style/GenericProgressIndicator"/>
+
         <Button
             style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="wuzup"
+            android:text="@string/wuzup"
             android:fontFamily=""
             android:id="@+id/BtnUpdate"
             android:padding="8dp"

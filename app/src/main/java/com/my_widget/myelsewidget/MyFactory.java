@@ -11,6 +11,7 @@ package com.my_widget.myelsewidget;
 
         import android.app.Notification;
         import android.app.NotificationManager;
+        import android.app.PendingIntent;
         import android.appwidget.AppWidgetManager;
         import android.content.Context;
         import android.content.Intent;
@@ -33,6 +34,8 @@ public class MyFactory implements RemoteViewsFactory {
     JSONArray pairsArray;
     GetRates getRates;
     String currecyZone;
+    final String LIST_READY = "list_ready";
+    public final static String BROADCAST_ACTION = "ru.startandroid.develop.p0961servicebackbroadcast";
 
 
     NotificationManager notificationManager;
@@ -128,7 +131,7 @@ public class MyFactory implements RemoteViewsFactory {
 
         context.startService(new Intent(context, PushNotices.class));
 
-        myNotification = new Notification.Builder(context)
+        /*myNotification = new Notification.Builder(context)
                 .setContentTitle("Exercise of Notification!")
                 .setContentText("http://android-er.blogspot.com/")
                 .setTicker("Notification!")
@@ -137,7 +140,7 @@ public class MyFactory implements RemoteViewsFactory {
                 .setDefaults(Notification.DEFAULT_SOUND)
                 .setAutoCancel(true)
                 .setSmallIcon(R.drawable.ic_launcher)
-                .build();
+                .build();*/
 
         //notificationManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
         //notificationManager.notify(MY_NOTIFICATION_ID, myNotification);
@@ -186,6 +189,12 @@ public class MyFactory implements RemoteViewsFactory {
                 }
 
             }
+            Log.d("LIST READY", "YYYYYYY");
+            Intent intent = new Intent(BROADCAST_ACTION);
+            intent.putExtra(LIST_READY, 1);
+
+            context.sendBroadcast(intent);
+
         } catch (Exception e) {
             // TODO Auto-generated catch block
             Log.e("Requesting fails", e.toString());

@@ -8,7 +8,7 @@ import android.widget.RemoteViewsService;
 import org.json.JSONArray;
 
 
-public class MyService extends RemoteViewsService {
+public class GetDataService extends RemoteViewsService {
 
     SharedPreferences sPref;
     String result;

@@ -5,25 +5,23 @@ package com.my_widget.myelsewidget;
  */
 import java.sql.Date;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
+import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.util.Log;
+import android.view.View;
 import android.widget.RemoteViews;
 import android.app.PendingIntent;
-
-
-import org.json.JSONArray;
 
 public class MyProvider extends AppWidgetProvider {
 
@@ -35,6 +33,9 @@ public class MyProvider extends AppWidgetProvider {
     private ComponentName thisWidget;
     private RemoteViews views;
     Timer myTimer = new Timer();
+    public final static String BROADCAST_ACTION = "ru.startandroid.develop.p0961servicebackbroadcast";
+    RemoteViews rv;
+    BroadcastReceiver br;
 
     @Override
     public void onEnabled(Context context) {
@@ -42,7 +43,10 @@ public class MyProvider extends AppWidgetProvider {
 
         Log.v(LOG_TAG, "onEnabled");
 
+
     }
+
+
 
     private void startTimer(final Context context, final AppWidgetManager manager, final int[] appWidgetIds) {
         Log.v(LOG_TAG, "Timer start");
@@ -85,6 +89,26 @@ public class MyProvider extends AppWidgetProvider {
             updateWidget(context, appWidgetManager, sp, i);
         }
         startTimer(context, appWidgetManager, appWidgetIds);
+
+
+
+        br = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+
+                int status = intent.getIntExtra("list_ready", 0);
+                Log.d(LOG_TAG, "receive intent");
+
+                // Ловим сообщения о старте задач
+                if (status == 1) {
+                    rv.setInt(R.id.updateProgressBar, "setVisibility", View.GONE);
+                }
+
+            }
+        };
+        IntentFilter intFilt = new IntentFilter(BROADCAST_ACTION);
+        // регистрируем (включаем) BroadcastReceiver
+        context.registerReceiver(br, intFilt);
     }
 
     protected PendingIntent getPendingSelfIntent(Context context, String action) {
@@ -99,15 +123,21 @@ public class MyProvider extends AppWidgetProvider {
 
         Log.d("MyProvider widget id", String.valueOf(appWidgetId));
 
+        rv = new RemoteViews(context.getPackageName(),
+                R.layout.widget);
+
+
+        rv.setInt(R.id.updateProgressBar, "setVisibility", View.VISIBLE);
+
 
         try{
             String CurrencyZone = (sp.getString(ConfigActivity.CURRENCY_ZONE, null)!=null) ? sp.getString(ConfigActivity.CURRENCY_ZONE, null): "";
             Log.d("updateWidgt", CurrencyZone);
 
-            RemoteViews rv = new RemoteViews(context.getPackageName(),
-                    R.layout.widget);
+
 
             setUpdateTV(rv, context, appWidgetId);
+
 
             setList(rv, context, appWidgetId, CurrencyZone);
 
@@ -124,6 +154,9 @@ public class MyProvider extends AppWidgetProvider {
     }
 
     void setUpdateTV(RemoteViews rv, Context context, int appWidgetId) {
+
+
+
         rv.setTextViewText(R.id.tvUpdate,
                 sdf.format(new Date(System.currentTimeMillis())));
         Intent updIntent = new Intent(context, MyProvider.class);
@@ -137,13 +170,21 @@ public class MyProvider extends AppWidgetProvider {
 
     void setList(RemoteViews rv, Context context, int appWidgetId, String CurrencyZone) {
 
-        Intent adapter = new Intent(context, MyService.class);
+        //
+
+        Intent adapter = new Intent(context, GetDataService.class);
         Log.d("CurencyZone", CurrencyZone);
         adapter.putExtra("ZONE", CurrencyZone);
         rv.setRemoteAdapter(R.id.lvList, adapter);
 
 
+
+
     }
+
+
+
+
 
 
     @Override

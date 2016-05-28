@@ -12,20 +12,20 @@
             android:id="@+id/euroZone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Euro Wuzup">
+            android:text="@string/eur_wuzup">
         </RadioButton>
         <RadioButton
             android:id="@+id/rubZone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="true"
-            android:text="Ruble Wuzup">
+            android:text="@string/rub_wuzup">
         </RadioButton>
         <RadioButton
             android:id="@+id/usdZone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Dollar Wuzup">
+            android:text="@string/usd_wuzup">
         </RadioButton>
     </RadioGroup>
     <Button
