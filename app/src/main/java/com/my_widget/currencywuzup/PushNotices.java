@@ -1,11 +1,10 @@
-package com.my_widget.myelsewidget;
+package com.my_widget.currencywuzup;
 
 import java.util.concurrent.TimeUnit;
 
         import android.app.Notification;
         import android.app.NotificationManager;
-        import android.app.PendingIntent;
-        import android.app.Service;
+import android.app.Service;
         import android.content.Intent;
         import android.os.IBinder;
 import android.util.Log;

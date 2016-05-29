@@ -1,4 +1,4 @@
-package com.my_widget.myelsewidget;
+package com.my_widget.currencywuzup;
 
 /**
  * Created by Sergey.Kudryashov on 2/26/2015.
@@ -18,7 +18,7 @@ import android.app.PendingIntent;
 
 import org.json.JSONArray;
 
-public class MyProvider extends AppWidgetProvider {
+public class CurrencyWidget extends AppWidgetProvider {
 
     SimpleDateFormat sdf = new SimpleDateFormat("dd MMMM HH:mm");
 
@@ -60,7 +60,7 @@ public class MyProvider extends AppWidgetProvider {
                       SharedPreferences sp,
                       int appWidgetId) {
 
-        Log.d(LOG_TAG, "MyProvider widget id: " + String.valueOf(appWidgetId));
+        Log.d(LOG_TAG, "CurrencyWidget widget id: " + String.valueOf(appWidgetId));
 
         rv = new RemoteViews(context.getPackageName(),
                 R.layout.widget);
@@ -75,7 +75,7 @@ public class MyProvider extends AppWidgetProvider {
             String CurrencyZone = (sp.getString(ConfigActivity.CURRENCY_ZONE, null)!=null) ? sp.getString(ConfigActivity.CURRENCY_ZONE, null): "";
             Log.d(LOG_TAG, "updateWidgt" + CurrencyZone);
 
-            JSONArray pairs = getRates.send(CurrencyZone);
+            JSONArray pairs = getRates.get(CurrencyZone);
 
             Log.d(LOG_TAG, "Get rates: " + pairs.toString());
 
@@ -105,7 +105,7 @@ public class MyProvider extends AppWidgetProvider {
 
         rv.setTextViewText(R.id.tvUpdate,
                 sdf.format(new Date(System.currentTimeMillis())));
-        Intent updIntent = new Intent(context, MyProvider.class);
+        Intent updIntent = new Intent(context, CurrencyWidget.class);
         updIntent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
         updIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS,
                 new int[]{appWidgetId});

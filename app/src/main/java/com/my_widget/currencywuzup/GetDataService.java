@@ -1,11 +1,9 @@
-package com.my_widget.myelsewidget;
+package com.my_widget.currencywuzup;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.util.Log;
 import android.widget.RemoteViewsService;
-
-import org.json.JSONArray;
 
 
 public class GetDataService extends RemoteViewsService {

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.my_widget.myelsewidget" >
+    package="com.my_widget.currencywuzup" >
 
     <uses-sdk
         android:minSdkVersion="16"
@@ -14,11 +14,11 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <service
-            android:name=".GetDataService"
+            android:name="com.my_widget.currencywuzup.GetDataService"
             android:permission="android.permission.BIND_REMOTEVIEWS" >
         </service>
 
-        <receiver android:name=".MyProvider" >
+        <receiver android:name=".CurrencyWidget" >
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -30,7 +30,7 @@
         </receiver>
 
         <activity
-            android:name=".ConfigActivity"
+            android:name="com.my_widget.currencywuzup.ConfigActivity"
             android:label="@string/title_activity_config" >
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
@@ -38,7 +38,7 @@
         </activity>
 
         <service
-            android:name=".PushNotices"
+            android:name="com.my_widget.currencywuzup.PushNotices"
             android:enabled="true"
             android:exported="true" >
         </service>

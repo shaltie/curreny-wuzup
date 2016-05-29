@@ -1,4 +1,4 @@
-package com.my_widget.myelsewidget;
+package com.my_widget.currencywuzup;
 
 import android.os.StrictMode;
 import android.util.Log;
@@ -30,16 +30,17 @@ public class GetRates {
 
     }
 
-    public JSONArray send(String CurrencyZone) throws JSONException {
+    public JSONArray get(String CurrencyZone) throws JSONException {
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
         HttpClient httpclient = new DefaultHttpClient();
-        HttpGet httpget = new HttpGet("http://skudr.ru/currency/?t="+CurrencyZone);
+        String Url = "http://skudr.ru/currency/?t="+CurrencyZone;
+        HttpGet httpget = new HttpGet(Url);
         JSONArray res = null;
 
-        Log.d(CAT_LOG, "Requesting - Ran send");
+        Log.d(CAT_LOG, "Requesting - Ran get: " + Url);
         try{
             httpget.setHeader("Accept", "application/json");
             httpget.setHeader("Content-type", "application/json");
@@ -60,6 +61,7 @@ public class GetRates {
                 String json = reader.readLine();
                 JSONTokener tokener = new JSONTokener(json);
                 res = new JSONArray(tokener);
+                //is.close();
             }
 
         }catch (ClientProtocolException e) {

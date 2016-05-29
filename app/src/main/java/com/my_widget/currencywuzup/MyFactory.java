@@ -1,4 +1,4 @@
-package com.my_widget.myelsewidget;
+package com.my_widget.currencywuzup;
 
 /**
  * Created by Sergey.Kudryashov on 2/26/2015.
