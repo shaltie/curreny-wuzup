@@ -63,6 +63,7 @@
             android:background="@drawable/updbtn"
             android:layout_weight="0"
             android:stateListAnimator="@null"
+            android:visibility="gone"
             android:textColor="#ffffff"
             >
         </Button>

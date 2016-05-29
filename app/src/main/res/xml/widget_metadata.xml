@@ -7,5 +7,5 @@
     android:minWidth="250dp"
     android:widgetCategory="keyguard|home_screen"
     android:configure="com.my_widget.myelsewidget.ConfigActivity"
-    android:updatePeriodMillis="6000000">
+    android:updatePeriodMillis="1800000">
 </appwidget-provider>

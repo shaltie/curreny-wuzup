@@ -39,7 +39,7 @@ public class GetRates {
         HttpGet httpget = new HttpGet("http://skudr.ru/currency/?t="+CurrencyZone);
         JSONArray res = null;
 
-        Log.d("Requesting", "Ran send");
+        Log.d(CAT_LOG, "Requesting - Ran send");
         try{
             httpget.setHeader("Accept", "application/json");
             httpget.setHeader("Content-type", "application/json");
