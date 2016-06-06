@@ -5,10 +5,10 @@ android {
     buildToolsVersion "21.0.2"
 
     defaultConfig {
-        applicationId "com.my_widget.currencywuzup"
+        applicationId "com.my_widget.myelsewidget"
         minSdkVersion 14
         targetSdkVersion 21
-        versionCode 1
+        versionCode 101
         versionName "1.01"
     }
     buildTypes {

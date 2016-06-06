@@ -1,4 +1,4 @@
-package com.my_widget.currencywuzup;
+package com.my_widget.myelsewidget;
 
 import java.util.concurrent.TimeUnit;
 

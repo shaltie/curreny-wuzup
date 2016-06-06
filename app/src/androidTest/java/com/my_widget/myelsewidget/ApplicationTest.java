@@ -1,4 +1,4 @@
-package com.my_widget.currencywuzup;
+package com.my_widget.myelsewidget;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;
