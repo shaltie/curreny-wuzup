@@ -1,0 +1,38 @@
+{
+  "project_info": {
+    "project_number": "120303522812",
+    "project_id": "currency-wuzup"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:120303522812:android:16d079d5d24d358e",
+        "android_client_info": {
+          "package_name": "com.my_widget.myelsewidget"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBsJwghiY3dmLH22YrhKJ5Gh9Omt7P5_x4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 2,
+          "analytics_property": {
+            "tracking_id": "UA-79853300-1"
+          }
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
