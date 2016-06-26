@@ -28,19 +28,18 @@ public class MyFactory implements RemoteViewsFactory {
     int widgetID;
     JSONArray pairsArray;
     RemoteViews rView;
+    Intent widgetIntent;
+
+    final String LOG_CAT = "FactoryAdapter";
 
     MyFactory(Context ctx, Intent intent) {
         context = ctx;
+        widgetIntent = intent;
         widgetID = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,
                 AppWidgetManager.INVALID_APPWIDGET_ID);
 
-        String jsonArray = intent.getStringExtra("PAIRS");
+        Log.d(LOG_CAT, "MyFactory start");
 
-        try {
-            pairsArray = new JSONArray(jsonArray);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
     }
 
     @Override
@@ -70,7 +69,8 @@ public class MyFactory implements RemoteViewsFactory {
 
     @Override
     public RemoteViews getViewAt(int position) {
-        Log.d("Factory getvw set_chngd", ask.get(position) + " / " + bid.get(position));
+        Log.d(LOG_CAT, "Factory getvw set_chngd: "+ ask.get(position) + " / " + bid.get(position));
+
         rView = new RemoteViews(context.getPackageName(),
                 R.layout.item);
         rView.setTextViewText(R.id.pair, pair.get(position));
@@ -104,6 +104,16 @@ public class MyFactory implements RemoteViewsFactory {
 
     @Override
     public void onDataSetChanged() {
+
+
+
+        String jsonArray = widgetIntent.getStringExtra("PAIRS");
+        Log.d(LOG_CAT, "onDataSetChanged: " + jsonArray);
+        try {
+            pairsArray = new JSONArray(jsonArray);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
         context.startService(new Intent(context, PushNotices.class));
 

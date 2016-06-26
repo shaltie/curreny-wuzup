@@ -11,6 +11,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.net.Uri;
 import android.util.Log;
 import android.view.View;
 import android.widget.RemoteViews;
@@ -59,7 +60,7 @@ public class CurrencyWidget extends AppWidgetProvider {
         return PendingIntent.getBroadcast(context, 0, intent, 0);
     }
 
-    void updateWidget(Context context, AppWidgetManager appWidgetManager,
+    public void updateWidget(Context context, AppWidgetManager appWidgetManager,
                       SharedPreferences sp,
                       int appWidgetId) {
 
@@ -75,10 +76,15 @@ public class CurrencyWidget extends AppWidgetProvider {
 
 
         try{
-            String CurrencyZone = (sp.getString(ConfigActivity.CURRENCY_ZONE, null)!=null) ? sp.getString(ConfigActivity.CURRENCY_ZONE, null): "";
+            String CurrencyZone = sp.getString(ConfigActivity.CURRENCY_ZONE, null);
+            Boolean bitcoin = sp.getBoolean(ConfigActivity.ADD_BITCOIN, false);
+            Boolean gold = sp.getBoolean(ConfigActivity.ADD_GOLD, false);
+            String customPairs = (sp.getString(ConfigActivity.CUSTOM_PAIRS, null)!=null) ? sp.getString(ConfigActivity.CUSTOM_PAIRS, null): "";
             Log.d(LOG_TAG, "updateWidgt" + CurrencyZone);
 
-            JSONArray pairs = getRates.get(CurrencyZone);
+            if (CurrencyZone == null) return;
+
+            JSONArray pairs = getRates.get(CurrencyZone, bitcoin, gold, customPairs);
 
             Log.d(LOG_TAG, "Get rates: " + pairs.toString());
 
@@ -104,7 +110,7 @@ public class CurrencyWidget extends AppWidgetProvider {
 
     void setUpdateTV(RemoteViews rv, Context context, int appWidgetId) {
 
-
+        Log.d(LOG_TAG, "setUpdatetv");
 
         rv.setTextViewText(R.id.tvUpdate,
                 sdf.format(new Date(System.currentTimeMillis())));
@@ -119,10 +125,14 @@ public class CurrencyWidget extends AppWidgetProvider {
 
     void setList(RemoteViews rv, Context context, int appWidgetId, String pairs) {
 
+
         Intent adapter = new Intent(context, GetDataService.class);
 
+        Log.d(LOG_TAG, "setList: " + pairs);
         adapter.putExtra("PAIRS", pairs);
+        adapter.setData(Uri.parse(adapter.toUri(Intent.URI_INTENT_SCHEME)));
         rv.setRemoteAdapter(R.id.lvList, adapter);
+        rv.setEmptyView(R.id.lvList, android.R.id.empty);
 
     }
 

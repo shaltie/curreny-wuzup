@@ -11,9 +11,6 @@
     <item name="darkgreen" type="color">#FF669900</item>
     <item name="darkorange" type="color">#FFFF8800</item>
     <item name="darkred" type="color">#FFCC0000</item>
-    <item name="green_gr_start" type="color">#FF60B143</item>
-    <item name="green_gr_end" type="color">#FF17A47F</item>
-    <item name="green_text" type="color">#89de63</item>
 
     <integer-array name="androidcolors">
         <item>@color/blue</item>

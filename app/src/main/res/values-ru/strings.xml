@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="widget_name">Виджет Currency Wuzup</string>
+    <string name="app_name">Currency Wuzup</string>
+    <string name="config">Настройки</string>
+    <string name="update">Обновить</string>
+    <string name="count">Count</string>
+    <string name="ok">Ок</string>
+    <string name="title_activity_config">Настройки виджета</string>
+    <string name="action_settings">Настройки</string>
+    <string name="eur_wuzup">Че как евро</string>
+    <string name="rub_wuzup">Че как рубль</string>
+    <string name="usd_wuzup">Че как доллар</string>
+    <string name="updated">Обновлено:</string>
+    <string name="wuzup">wuzup</string>
+    <string name="custom_mode">Свой вариант</string>
+    <string name="show_bitcoin_rate">Показать курс Bitcoin</string>
+    <string name="show_gold_rate">Показать курс золота</string>
+</resources>

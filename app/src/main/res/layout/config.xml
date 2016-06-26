@@ -12,26 +12,71 @@
             android:id="@+id/euroZone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/eur_wuzup">
+            android:checked="true"
+            android:text="@string/eur_wuzup"
+            android:onClick="onRadioButtonClicked">
         </RadioButton>
         <RadioButton
             android:id="@+id/rubZone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:checked="true"
-            android:text="@string/rub_wuzup">
+            android:text="@string/rub_wuzup"
+            android:onClick="onRadioButtonClicked">
         </RadioButton>
         <RadioButton
             android:id="@+id/usdZone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/usd_wuzup">
+            android:text="@string/usd_wuzup"
+            android:onClick="onRadioButtonClicked">
+        </RadioButton>
+        <RadioButton
+            android:id="@+id/customZoneSelect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/custom_mode"
+            android:onClick="onRadioButtonClicked">
         </RadioButton>
     </RadioGroup>
+
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/show_bitcoin_rate"
+        android:layout_marginLeft="5dp"
+        android:id="@+id/showBitcoinRateSwitch"
+        android:layout_gravity="left" />
+
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/show_gold_rate"
+        android:layout_marginLeft="5dp"
+        android:id="@+id/showGoldRateSwitch"
+        android:layout_gravity="left" />
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="onClick"
         android:text="@string/ok">
     </Button>
+
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/customZoneBlock"
+            android:layout_width="match_parent"
+            android:visibility="gone"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
 </LinearLayout>

@@ -25,7 +25,7 @@
             android:layout_marginBottom="5px"
             android:layout_marginRight="10dp"
             android:layout_weight="0"
-            android:textColor="#f7d071"
+            android:textColor="@color/green_text"
             android:textSize="14dp"
             android:textAppearance="?android:attr/textAppearanceLarge">
         </TextView>
@@ -38,7 +38,7 @@
             android:layout_marginRight="10dp"
             android:layout_marginBottom="5px"
             android:layout_weight="100"
-            android:textColor="#f7d071"
+            android:textColor="@color/green_text"
             android:textSize="15dp"
             android:textAppearance="?android:attr/textAppearanceLarge">
         </TextView>

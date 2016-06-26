@@ -30,13 +30,16 @@ public class GetRates {
 
     }
 
-    public JSONArray get(String CurrencyZone) throws JSONException {
+
+    public JSONArray get(String CurrencyZone, Boolean bitcoin, Boolean gold, String customPairs) throws JSONException {
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
         HttpClient httpclient = new DefaultHttpClient();
-        String Url = "http://skudr.ru/currency/?t="+CurrencyZone;
+        Log.d(CAT_LOG, "bitcoin: " +  bitcoin);
+        Log.d(CAT_LOG, "gold: " +  gold);
+        String Url = "http://skudr.ru/currency/?test=1&t="+CurrencyZone + "&b=" + bitcoin + "&g=" + gold + "&p=" + customPairs;
         HttpGet httpget = new HttpGet(Url);
         JSONArray res = null;
 

@@ -6,8 +6,8 @@
                 android:topRightRadius="6dip"
                 android:bottomLeftRadius="6dip"
                 />
-            <stroke android:width="1dip" android:color="#ff794e14" />
-            <gradient android:angle="-90" android:startColor="#d4ac7618" android:endColor="#c68c1e"  />
+            <stroke android:width="1dip" android:color="#248c16" />
+            <gradient android:angle="-90" android:startColor="@color/green_gr_start" android:endColor="@color/green_gr_end"  />
         </shape>
     </item>
     <item android:state_focused="true">
@@ -16,8 +16,8 @@
                 android:topRightRadius="6dip"
                 android:bottomLeftRadius="6dip"
                 />
-            <stroke android:width="1dip" android:color="#d1b18620" />
-            <solid android:color="#ccb38020"/>
+            <stroke android:width="1dip" android:color="#248c16" />
+            <solid android:color="#248c16"/>
         </shape>
     </item>
     <item >
@@ -26,8 +26,8 @@
                 android:topRightRadius="6dip"
                 android:bottomLeftRadius="6dip"
                 />
-            <stroke android:width="1dip" android:color="#a66a15" />
-            <gradient android:angle="-90" android:startColor="#bc7a13" android:endColor="#c6841b" />
+            <stroke android:width="1dip" android:color="#248c16" />
+            <gradient android:angle="-90" android:startColor="@color/green_gr_start" android:endColor="@color/green_gr_end" />
         </shape>
     </item>
 </selector>
