@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:textSize="16dip"
         android:padding="5dp"
+        android:layout_gravity="start"
         android:textAppearance="?android:attr/textAppearanceMedium">
     </TextView>
     <TextView
@@ -21,7 +22,7 @@
         android:layout_height="wrap_content"
         android:textSize="16sp"
         android:padding="5dp"
-        android:gravity="right"
+        android:gravity="end"
         android:textAppearance="?android:attr/textAppearanceMedium">
     </TextView>
     <TextView

@@ -22,6 +22,7 @@
             android:layout_height="wrap_content"
             android:text="@string/updated"
             android:paddingLeft="30px"
+            android:paddingStart="30px"
             android:layout_marginBottom="5px"
             android:layout_marginRight="10dp"
             android:layout_marginEnd="10dp"
