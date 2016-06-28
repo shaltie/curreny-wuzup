@@ -44,16 +44,18 @@
         android:layout_height="wrap_content"
         android:text="@string/show_bitcoin_rate"
         android:layout_marginLeft="5dp"
+        android:layout_marginStart="5dp"
         android:id="@+id/showBitcoinRateSwitch"
-        android:layout_gravity="left" />
+        android:layout_gravity="start" />
 
     <Switch
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/show_gold_rate"
         android:layout_marginLeft="5dp"
+        android:layout_marginStart="5dp"
         android:id="@+id/showGoldRateSwitch"
-        android:layout_gravity="left" />
+        android:layout_gravity="start" />
 
     <Button
         android:layout_width="wrap_content"

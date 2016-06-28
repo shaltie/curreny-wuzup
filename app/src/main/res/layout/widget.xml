@@ -24,6 +24,7 @@
             android:paddingLeft="30px"
             android:layout_marginBottom="5px"
             android:layout_marginRight="10dp"
+            android:layout_marginEnd="10dp"
             android:layout_weight="0"
             android:textColor="@color/green_text"
             android:textSize="14dp"
@@ -36,6 +37,7 @@
             android:layout_height="wrap_content"
             android:padding="3dp"
             android:layout_marginRight="10dp"
+            android:layout_marginEnd="10dp"
             android:layout_marginBottom="5px"
             android:layout_weight="100"
             android:textColor="@color/green_text"
@@ -48,7 +50,9 @@
             android:layout_width="wrap_content"
             android:paddingTop="30px"
             android:paddingRight="20px"
+            android:paddingEnd="20px"
             android:paddingLeft="20px"
+            android:paddingStart="20px"
             android:layout_height="wrap_content"
             style="@style/GenericProgressIndicator"/>
 
@@ -76,6 +80,7 @@
     <ListView
         android:id="@+id/lvList"
         android:paddingLeft="20px"
+        android:paddingStart="20px"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/headerLayout">

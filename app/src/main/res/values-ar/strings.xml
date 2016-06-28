@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="widget_name">Wuzup - أسعار العملات</string>
+    <string name="app_name">Currency Wuzup</string>
+    <string name="eur_wuzup">أسعار اليورو</string>
+    <string name="rub_wuzup">أسعار الروبل الروسي</string>
+    <string name="usd_wuzup">أسعار الدولار الأمريكي</string>
+    <string name="wuzup">wuzup</string>
+    <string name="config">اعدادات</string>
+    <string name="update">تحديث</string>c
+    <string name="ok">حسناً</string>
+    <string name="title_activity_config">ضبط التطبيق</string>
+    <string name="action_settings">الإعدادات</string>
+    <string name="updated">تم التحديث:</string>
+    <string name="custom_mode">وضع مخصص:</string>
+    <string name="show_bitcoin_rate">عرض سعر البيتكوين</string>
+    <string name="show_gold_rate">عرض سعر الذهب</string>
+
+</resources>
