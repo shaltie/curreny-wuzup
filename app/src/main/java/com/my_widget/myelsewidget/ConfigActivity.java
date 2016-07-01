@@ -20,10 +20,14 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Switch;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
+
 import java.util.Arrays;
 import java.util.List;
 
 public class ConfigActivity extends Activity {
+    //public static GoogleAnalytics analytics;
 
     int widgetID = AppWidgetManager.INVALID_APPWIDGET_ID;
     Intent resultValue;
@@ -43,6 +47,8 @@ public class ConfigActivity extends Activity {
     public final static String CUSTOM_PAIRS = "custom_pairs";
 
     private final int CKB_ID_PREFIX = 100500;
+
+    private Tracker mTracker;
 
     List<String> configCustomCkbs;
 
@@ -80,14 +86,17 @@ public class ConfigActivity extends Activity {
 
         setContentView(R.layout.config);
 
+        AnalyticsApplication application = (AnalyticsApplication) getApplication();
+        mTracker = application.getDefaultTracker();
+
         checkboxLayout = (LinearLayout) findViewById(R.id.customZoneBlock);
         showBitcoinRateSwitch = (Switch) findViewById(R.id.showBitcoinRateSwitch);
         showGoldRateSwitch = (Switch) findViewById(R.id.showGoldRateSwitch);
 
         configCustomCkbs = Arrays.asList(getResources().getStringArray(R.array.config_custom_checkboxes));
 
-
         createCheckboxList();
+
     }
 
     private void createCheckboxList(){
@@ -148,6 +157,8 @@ public class ConfigActivity extends Activity {
         }
 
 
+
+
         boolean showBitcoin = showBitcoinRateSwitch.isChecked();
         boolean showGold = showGoldRateSwitch.isChecked();
 
@@ -163,7 +174,16 @@ public class ConfigActivity extends Activity {
         editor.putString(CURRENCY_ZONE, selZone);
         editor.putBoolean(ADD_BITCOIN, showBitcoin);
         editor.putBoolean(ADD_GOLD, showGold);
+
+        mTracker.send(new HitBuilders.EventBuilder()
+                .setCategory("Action")
+                .setAction("Zone " + selZone + ", btc " + ((showBitcoin)?"y":"n"))
+                .build());
+
         if(selZone.equals("custom")){
+
+
+
             Log.d(LOG_TAG, "selzone = custom");
             String customPairs = "";
             for(int i = 0; i < checkboxLayout.getChildCount(); i++){
@@ -177,6 +197,11 @@ public class ConfigActivity extends Activity {
             }
             Log.d(LOG_TAG + " Pairs", customPairs);
             editor.putString(CUSTOM_PAIRS, customPairs);
+
+            mTracker.send(new HitBuilders.EventBuilder()
+                    .setCategory("Action")
+                    .setAction("Custome pairs: " + customPairs)
+                    .build());
         }
         editor.commit();
 
