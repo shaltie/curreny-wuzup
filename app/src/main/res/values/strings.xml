@@ -5,7 +5,6 @@
     <string name="app_name">Currency Wuzup</string>
     <string name="config">Config</string>
     <string name="update">Update</string>
-    <string name="count">Count</string>
     <string name="ok">Ok</string>
     <string name="title_activity_config">Adjust your widget</string>
     <string name="action_settings">Settings</string>

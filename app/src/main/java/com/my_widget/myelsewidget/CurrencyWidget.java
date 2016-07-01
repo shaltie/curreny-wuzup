@@ -47,6 +47,8 @@ public class CurrencyWidget extends AppWidgetProvider {
         SharedPreferences sp = context.getSharedPreferences(
                 ConfigActivity.WIDGET_PREF, Context.MODE_PRIVATE);
 
+        Log.d(LOG_TAG, "SharedPreferences: " + sp.toString());
+
         for (int i : appWidgetIds) {
             Log.v(LOG_TAG, "appWidgetIds: " + i);
             updateWidget(context, appWidgetManager, sp, i);
@@ -80,9 +82,16 @@ public class CurrencyWidget extends AppWidgetProvider {
             Boolean bitcoin = sp.getBoolean(ConfigActivity.ADD_BITCOIN, false);
             Boolean gold = sp.getBoolean(ConfigActivity.ADD_GOLD, false);
             String customPairs = (sp.getString(ConfigActivity.CUSTOM_PAIRS, null)!=null) ? sp.getString(ConfigActivity.CUSTOM_PAIRS, null): "";
-            Log.d(LOG_TAG, "updateWidgt" + CurrencyZone);
+            Log.d(LOG_TAG, "updateWidgt Zone before rem: " + CurrencyZone);
 
             if (CurrencyZone == null) return;
+
+            /*Editor editor = sp.edit();
+            // Need to remove for next config it will be empty and this method wont start before config is set
+            editor.putString(ConfigActivity.CURRENCY_ZONE, null);
+            editor.commit();*/
+
+            Log.d(LOG_TAG, "Current_zone after rem: " + sp.getString(ConfigActivity.CURRENCY_ZONE, null));
 
             JSONArray pairs = getRates.get(CurrencyZone, bitcoin, gold, customPairs);
 
