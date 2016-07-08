@@ -115,8 +115,6 @@ public class MyFactory implements RemoteViewsFactory {
             e.printStackTrace();
         }
 
-        context.startService(new Intent(context, PushNotices.class));
-
         try{
 
             ArrayList<String> pairsList = new ArrayList<String>();

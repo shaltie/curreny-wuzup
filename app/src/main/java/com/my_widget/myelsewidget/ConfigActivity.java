@@ -9,11 +9,9 @@ import android.appwidget.AppWidgetManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
-import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.AbsoluteLayout;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -86,8 +84,13 @@ public class ConfigActivity extends Activity {
 
         setContentView(R.layout.config);
 
-        AnalyticsApplication application = (AnalyticsApplication) getApplication();
-        mTracker = application.getDefaultTracker();
+        try {
+            AnalyticsApplication application = (AnalyticsApplication) getApplication();
+            mTracker = application.getDefaultTracker();
+        }catch (Exception e){
+            Log.d(LOG_TAG, e.toString());
+        }
+
 
         checkboxLayout = (LinearLayout) findViewById(R.id.customZoneBlock);
         showBitcoinRateSwitch = (Switch) findViewById(R.id.showBitcoinRateSwitch);
@@ -175,10 +178,16 @@ public class ConfigActivity extends Activity {
         editor.putBoolean(ADD_BITCOIN, showBitcoin);
         editor.putBoolean(ADD_GOLD, showGold);
 
-        mTracker.send(new HitBuilders.EventBuilder()
-                .setCategory("Action")
-                .setAction("Zone " + selZone + ", btc " + ((showBitcoin)?"y":"n"))
-                .build());
+        try{
+            mTracker.send(new HitBuilders.EventBuilder()
+                    .setCategory("Action")
+                    .setAction("Zone " + selZone + ", btc " + ((showBitcoin)?"y":"n"))
+                    .build());
+        }catch(Exception e){
+            Log.d(LOG_TAG, e.toString());
+        }
+
+
 
         if(selZone.equals("custom")){
 
@@ -198,10 +207,15 @@ public class ConfigActivity extends Activity {
             Log.d(LOG_TAG + " Pairs", customPairs);
             editor.putString(CUSTOM_PAIRS, customPairs);
 
-            mTracker.send(new HitBuilders.EventBuilder()
-                    .setCategory("Action")
-                    .setAction("Custome pairs: " + customPairs)
-                    .build());
+            try {
+                mTracker.send(new HitBuilders.EventBuilder()
+                        .setCategory("Action")
+                        .setAction("Custome pairs: " + customPairs)
+                        .build());
+            }catch(Exception e){
+                Log.d(LOG_TAG, e.toString());
+            }
+
         }
         editor.commit();
 

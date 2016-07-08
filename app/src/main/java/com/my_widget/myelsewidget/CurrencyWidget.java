@@ -30,11 +30,18 @@ public class CurrencyWidget extends AppWidgetProvider {
     GetRates getRates;
     RemoteViews rv;
 
+    public static final String ACTION_GOTO_APP = "ACTION_GOTO_APP";
+
     @Override
     public void onReceive(Context context, Intent intent) {
         super.onReceive(context, intent);
 
-        Log.d(LOG_TAG, "receive intent");
+        Log.d(LOG_TAG, "onReceive() " + intent.getAction());
+
+        if (ACTION_GOTO_APP.equals(intent.getAction()))
+        {
+           openApp(context);
+        }
 
     }
 
@@ -56,6 +63,12 @@ public class CurrencyWidget extends AppWidgetProvider {
 
     }
 
+    public void openApp(Context context) {
+        Intent intent = new Intent(context, OptionsActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent);
+    }
+
     protected PendingIntent getPendingSelfIntent(Context context, String action) {
         Intent intent = new Intent(context, getClass());
         intent.setAction(action);
@@ -63,8 +76,8 @@ public class CurrencyWidget extends AppWidgetProvider {
     }
 
     public void updateWidget(Context context, AppWidgetManager appWidgetManager,
-                      SharedPreferences sp,
-                      int appWidgetId) {
+                             SharedPreferences sp,
+                             int appWidgetId) {
 
         Log.d(LOG_TAG, "CurrencyWidget widget id: " + String.valueOf(appWidgetId));
 
@@ -103,6 +116,7 @@ public class CurrencyWidget extends AppWidgetProvider {
 
             if(pairs != null){
                 setUpdateTV(rv, context, appWidgetId);
+                setGotoApp(rv, context, appWidgetId);
 
                 setList(rv, context, appWidgetId, pairs.toString());
 
@@ -130,6 +144,21 @@ public class CurrencyWidget extends AppWidgetProvider {
         PendingIntent updPIntent = PendingIntent.getBroadcast(context,
                 appWidgetId, updIntent, 0);
         rv.setOnClickPendingIntent(R.id.BtnUpdate, updPIntent);
+    }
+
+    void setGotoApp(RemoteViews rv, Context context, int appWidgetId) {
+
+        Log.d(LOG_TAG, "setGotoAppBtn");
+
+        //rv.setTextViewText(R.id.tvUpdate,
+                //sdf.format(new Date(System.currentTimeMillis())));
+        Intent updIntent = new Intent(context, CurrencyWidget.class);
+        updIntent.setAction(ACTION_GOTO_APP);
+        //updIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS,
+                //new int[]{appWidgetId});
+        PendingIntent updPIntent = PendingIntent.getBroadcast(context,
+                appWidgetId, updIntent, 0);
+        rv.setOnClickPendingIntent(R.id.goToSettingsBtn, updPIntent);
     }
 
     void setList(RemoteViews rv, Context context, int appWidgetId, String pairs) {
