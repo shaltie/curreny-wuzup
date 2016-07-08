@@ -131,6 +131,7 @@ public class PushNotices extends IntentService {
                             String a = pairsArray.getJSONObject(i).getString("ask");
                             Map <String, String>  result = calc(p, a, watchers.get(p));
                             if(result != null){
+                                Log.d(LOG_TAG, "Notice reached");
                                 sendNotif(p, result.get("condition"),  result.get("price"), i);
                             }
 
@@ -160,12 +161,19 @@ public class PushNotices extends IntentService {
         if(watcher != null){
 
             for(HashMap.Entry<String, String> entry : watcher.entrySet()) {
-                String key = entry.getKey();
+                String key = entry.getKey().toString();
                 String value = entry.getValue();
                 Map<String, String> res = new HashMap<>();
                 Log.d(LOG_TAG, "calc func ifs a: " + Float.parseFloat(a) + " " + key + " " + Float.parseFloat(value));
-                if(key == "<=" && Float.parseFloat(a) <= Float.parseFloat(value) &&
-                        key == ">=" && Float.parseFloat(a) >= Float.parseFloat(value)){
+                Log.d(LOG_TAG, "calc func ifs cond <=: " + (key == "<="));
+                Log.d(LOG_TAG, "calc func ifs cond >=: " + (key == ">="));
+                Log.d(LOG_TAG, "calc func <= cond: " + ((key == "<=") && (Float.parseFloat(a) <= Float.parseFloat(value))));
+                Log.d(LOG_TAG, "calc func >= cond: " + ((key == ">=") && (Float.parseFloat(a) >= Float.parseFloat(value))));
+                if(
+                        ((key.equals("<=")) && (Float.parseFloat(a) <= Float.parseFloat(value))) ||
+                        ((key.equals(">=")) && (Float.parseFloat(a) >= Float.parseFloat(value)))
+                        ){
+                    Log.d(LOG_TAG, "calc condition ok");
                     res.put("condition", key);
                     res.put("price", value);
                     return res;
