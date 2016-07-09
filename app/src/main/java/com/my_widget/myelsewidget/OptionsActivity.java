@@ -8,9 +8,11 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -61,6 +63,10 @@ public class OptionsActivity extends Activity implements View.OnClickListener {
         conditionsSpinner = (Spinner) findViewById(R.id.chooseConditionSpinner);
         watchersList = (ListView) findViewById(R.id.watchersList);
         watchersBlock = (LinearLayout) findViewById(R.id.optionsActivityWatchersBlock);
+
+        enterPairTargetPrice.setImeOptions(EditorInfo.IME_ACTION_DONE);
+
+
 
         sPref = getSharedPreferences("PRICE_WATCHERS", MODE_PRIVATE);
 

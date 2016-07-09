@@ -14,6 +14,7 @@
     <item name="green_gr_start" type="color">#FF60B143</item>
     <item name="green_gr_end" type="color">#FF17A47F</item>
     <item name="green_text" type="color">#89de63</item>
+    <item name="white" type="color">#fff</item>
 
     <integer-array name="androidcolors">
         <item>@color/blue</item>
