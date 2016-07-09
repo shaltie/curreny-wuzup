@@ -49,7 +49,8 @@
         <ProgressBar
             android:id="@+id/updateProgressBar"
             android:layout_width="wrap_content"
-            android:paddingTop="30px"
+            android:paddingTop="20px"
+            android:paddingBottom="20px"
             android:paddingRight="20px"
             android:paddingEnd="20px"
             android:paddingLeft="20px"
@@ -75,9 +76,6 @@
 
     </LinearLayout>
 
-
-
-
     <ListView
         android:id="@+id/lvList"
         android:paddingLeft="20px"
@@ -91,15 +89,19 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@drawable/header_layout">
+        android:background="@drawable/footer_layout">
 
         <ImageButton
-            android:src="@drawable/config_btn"
+            android:src="@drawable/notification_bell3"
             android:id="@+id/goToSettingsBtn"
+            android:background="?android:selectableItemBackground"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_margin="5dp"
+            android:layout_width="48px"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            android:layout_height="48px" />
     </RelativeLayout>
 
 

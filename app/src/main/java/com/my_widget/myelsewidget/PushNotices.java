@@ -69,7 +69,7 @@ public class PushNotices extends IntentService {
         checkRates();
 
         try {
-            TimeUnit.SECONDS.sleep(30);
+            TimeUnit.SECONDS.sleep(300);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -204,7 +204,7 @@ public class PushNotices extends IntentService {
                             .setContentText(text);
             Intent resultIntent = new Intent(this, OptionsActivity.class);
             TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
-            //stackBuilder.addParentStack(OptionsActivity.class);
+            stackBuilder.addParentStack(OptionsActivity.class);
             stackBuilder.addNextIntent(resultIntent);
             PendingIntent resultPendingIntent =
                     stackBuilder.getPendingIntent(
