@@ -1,14 +1,14 @@
 package com.my_widget.myelsewidget;
 
-import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,22 +20,18 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import org.json.JSONArray;
 
-import java.io.ByteArrayOutputStream;
-import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-public class OptionsActivity extends Activity implements View.OnClickListener {
+public class OptionsActivity extends AppCompatActivity implements View.OnClickListener {
 
     List<String> pairsList;
+    List<String> pairsListExtra;
     String[] conditionsList = {"<=", ">="};
 
     final String LOG_TAG = "Options Activity";
@@ -51,6 +47,8 @@ public class OptionsActivity extends Activity implements View.OnClickListener {
     ListView watchersList;
     LinearLayout watchersBlock;
 
+    GetRates getRates;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +58,16 @@ public class OptionsActivity extends Activity implements View.OnClickListener {
         btnAdd.setOnClickListener(this);
         pairsSpinner = (Spinner) findViewById(R.id.choosePairSpinner);
         enterPairTargetPrice = (EditText) findViewById(R.id.enterPairTargetPrice);
+
+        btnAdd.setEnabled(enterPairTargetPrice.getText().toString().trim().length() > 0);
+        enterPairTargetPrice.addTextChangedListener(new TextWatcher(){
+            public void afterTextChanged(Editable s) {
+                btnAdd.setEnabled(s.toString().trim().length() > 0);
+            }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after){}
+            public void onTextChanged(CharSequence s, int start, int before, int count){}
+        });
+
         conditionsSpinner = (Spinner) findViewById(R.id.chooseConditionSpinner);
         watchersList = (ListView) findViewById(R.id.watchersList);
         watchersBlock = (LinearLayout) findViewById(R.id.optionsActivityWatchersBlock);
@@ -71,9 +79,44 @@ public class OptionsActivity extends Activity implements View.OnClickListener {
         sPref = getSharedPreferences("PRICE_WATCHERS", MODE_PRIVATE);
 
         pairsList = Arrays.asList(getResources().getStringArray(R.array.config_custom_checkboxes));
+        pairsListExtra = Arrays.asList(getResources().getStringArray(R.array.config_custom_checkboxes));
+
+        getRates = new GetRates();
+
+
+        try{
+            JSONArray pairsArray = getRates.get("full", false, false, null);
+            if(pairsArray != null){
+
+                for (int i=0;i<pairsArray.length();i++){
+                    try{
+                        String p = pairsArray.getJSONObject(i).getString("symbol");
+                        String a = pairsArray.getJSONObject(i).getString("ask");
+                        String currency = p.replaceAll(".*?(.?.?.?)?$", "$1");
+                        int pos = pairsListExtra.indexOf(p);
+
+                        if(pos > -1){
+                            //pairsList.set(i, p);
+                            pairsListExtra.set(pos, p + " ("+a+" "+currency+")");
+                        }
+
+                    }catch (Exception e){
+                        Log.d(LOG_TAG, e.toString());
+                    }
+                }
+
+            }
+
+        }catch (Exception e){
+            Log.d(LOG_TAG, e.toString());
+        }
+
+
+
+
 
         // адаптер списка пар
-        ArrayAdapter<String> pairsAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, pairsList);
+        ArrayAdapter<String> pairsAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, pairsListExtra);
         pairsAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         pairsSpinner.setAdapter(pairsAdapter);
 
@@ -85,6 +128,9 @@ public class OptionsActivity extends Activity implements View.OnClickListener {
         conditionsSpinner.setSelection(0);
 
         loadWatchersList();
+
+
+
 
 
     }
@@ -104,9 +150,13 @@ public class OptionsActivity extends Activity implements View.OnClickListener {
 
     private void addWatcher(){
 
-        String ps = pairsSpinner.getSelectedItem().toString();
+        int psp = pairsSpinner.getSelectedItemPosition();
+        String ps = pairsList.get(psp);
+        Log.d(LOG_TAG, "pairsList: " + pairsList.toString());
         String cs = conditionsSpinner.getSelectedItem().toString();
         String pr = enterPairTargetPrice.getText().toString();
+
+        if(pr.equals("")) return;
 
         try {
 
@@ -173,7 +223,7 @@ public class OptionsActivity extends Activity implements View.OnClickListener {
                     arr = new String[] {getResources().getString(R.string.data_incorrect), "", ""};
                 }else{
                     // Get last 3 characters from currency pair
-                    currency = arr[0].replaceAll(".*?(.?.?.?)?$", "$1");;
+                    currency = arr[0].replaceAll(".*?(.?.?.?)?$", "$1");
                     condition = (arr[1].equals("<=")) ? getResources().getString(R.string.equal_or_less) : getResources().getString(R.string.equal_or_more);
                 }
                 String out = arr[0] + " " + condition + " " + arr[2] + " " + currency;

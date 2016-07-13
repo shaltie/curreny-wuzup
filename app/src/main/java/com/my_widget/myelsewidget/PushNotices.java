@@ -1,5 +1,6 @@
 package com.my_widget.myelsewidget;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -30,6 +31,8 @@ public class PushNotices extends IntentService {
     NotificationManager nm;
 
     final String LOG_TAG = "Push_Notices";
+
+    ArrayList renderedWatchersList;
 
     SharedPreferences sPref;
 
@@ -92,9 +95,12 @@ public class PushNotices extends IntentService {
 
             Map<String, Map<String, String>> watchers = new HashMap<>();
 
+            renderedWatchersList = new ArrayList<String>();
+
             for(Map.Entry<String,?> entry : allPrefs.entrySet()){
                 String val = entry.getValue().toString();
-                //String key = entry.getKey().toString();
+                String key = entry.getKey().toString();
+                renderedWatchersList.add(key);
                 String[] arr = val.split("--");
 
                 String cond;
@@ -127,12 +133,15 @@ public class PushNotices extends IntentService {
 
                     for (int i=0;i<pairsArray.length();i++){
                         try{
+
                             String p = pairsArray.getJSONObject(i).getString("symbol");
                             String a = pairsArray.getJSONObject(i).getString("ask");
+                            Log.d(LOG_TAG, "notice checked: " + p + " " + a);
                             Map <String, String>  result = calc(p, a, watchers.get(p));
                             if(result != null){
                                 Log.d(LOG_TAG, "Notice reached");
-                                sendNotif(p, result.get("condition"),  result.get("price"), i);
+                                sendNotif(p, result.get("condition"), result.get("price"), i);
+                                removeWatcher(i);
                             }
 
                         }catch (Exception e){
@@ -154,6 +163,13 @@ public class PushNotices extends IntentService {
 
     }
 
+    public void removeWatcher(int w){
+        Log.d(LOG_TAG, "removingWatcehr: " + w);
+        SharedPreferences.Editor ed = sPref.edit();
+        ed.remove(renderedWatchersList.get(w).toString());
+        ed.apply();
+    }
+
     Map<String, String> calc(String p, String a, Map<String, String> watcher){
 
         Log.d(LOG_TAG, "calc func: " + p + " " + a);
@@ -164,13 +180,7 @@ public class PushNotices extends IntentService {
                 String key = entry.getKey().toString();
                 String value = entry.getValue();
                 Map<String, String> res = new HashMap<>();
-                Log.d(LOG_TAG, "calc func ifs a: " + Float.parseFloat(a) + " " + key + " " + Float.parseFloat(value));
-                Log.d(LOG_TAG, "calc func ifs cond <=: " + (key == "<="));
-                Log.d(LOG_TAG, "calc func ifs cond >=: " + (key == ">="));
-                Log.d(LOG_TAG, "calc func <= cond: " + ((key == "<=") && (Float.parseFloat(a) <= Float.parseFloat(value))));
-                Log.d(LOG_TAG, "calc func >= cond: " + ((key == ">=") && (Float.parseFloat(a) >= Float.parseFloat(value))));
-                if(
-                        ((key.equals("<=")) && (Float.parseFloat(a) <= Float.parseFloat(value))) ||
+                if( ((key.equals("<=")) && (Float.parseFloat(a) <= Float.parseFloat(value))) ||
                         ((key.equals(">=")) && (Float.parseFloat(a) >= Float.parseFloat(value)))
                         ){
                     Log.d(LOG_TAG, "calc condition ok");
@@ -192,7 +202,7 @@ public class PushNotices extends IntentService {
         String currency = pair.replaceAll(".*?(.?.?.?)?$", "$1");;
 
         text += pair + " ";
-        text += (condition == "<=") ? getResources().getString(R.string.equal_or_less) : getResources().getString(R.string.equal_or_more);
+        text += (condition.equals("<=")) ? getResources().getString(R.string.equal_or_less) : getResources().getString(R.string.equal_or_more);
         text += " " + price + currency;
 
         try {
@@ -200,7 +210,7 @@ public class PushNotices extends IntentService {
             Notification.Builder mBuilder =
                     new Notification.Builder(this)
                             .setSmallIcon(R.drawable.ic_launcher)
-                            .setContentTitle("Goal has been reached")
+                            .setContentTitle(getResources().getString(R.string.push_notification_title))
                             .setContentText(text);
             Intent resultIntent = new Intent(this, OptionsActivity.class);
             TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
@@ -212,6 +222,8 @@ public class PushNotices extends IntentService {
                             PendingIntent.FLAG_UPDATE_CURRENT
                     );
             mBuilder.setContentIntent(resultPendingIntent);
+            mBuilder.setDefaults(Notification.DEFAULT_SOUND|Notification.DEFAULT_LIGHTS|Notification.DEFAULT_VIBRATE);
+
             NotificationManager mNotificationManager =
                     (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 

@@ -17,7 +17,7 @@
     <string name="show_bitcoin_rate">Show Bitcoin rate</string>
     <string name="show_gold_rate">Show gold rate</string>
     <string name="title_activity_options">OptionsActivity</string>
-    <string name="push_notification_title">Wuzup notifications center</string>
+    <string name="activity_push_notification_title">Wuzup notifications center</string>
     <string name="wuzup_notification_lead_text">Choose currency pair, condition and price number, and we\'ll send you push notification when currency will reach the price!</string>
     <string name="notification_pairs_list_title">Already added conditions</string>
     <string name="enter_price">Enter price</string>
@@ -26,6 +26,8 @@
     <string name="data_incorrect">Data is incorrect</string>
     <string name="equal_or_more">equals or more than</string>
     <string name="equal_or_less">equals or less than</string>
+    <string name="close">Close</string>
+    <string name="push_notification_title">Goal has been reached</string>
 
     <string name="hello_world">Hello world!</string>
 </resources>
