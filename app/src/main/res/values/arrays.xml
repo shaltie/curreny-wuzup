@@ -16,6 +16,7 @@
 
 <resources>
     <string-array name="config_custom_checkboxes">
+        <!-- Standard currencies -->
         <item>EURUSD</item>
         <item>EURGBP</item>
         <item>EURRUB</item>
@@ -26,6 +27,33 @@
         <item>EURCHF</item>
         <item>USDCHF</item>
         <item>XAUEUR</item>
+
+        <!-- Arabic currencies -->
+        <item>USDSAR</item>
+        <item>EURSAR</item>
+        <item>USDAED</item>
+        <item>EURAED</item>
+        <item>USDKWD</item>
+        <item>EURKWD</item>
+        <item>USDEGP</item>
+        <item>EUREGP</item>
+        <item>AEDSAR</item>
+        <item>AEDKWD</item>
+        <item>AEDEGP</item>
+        <item>SARKWD</item>
+        <item>SAREGP</item>
+        <item>KWDEGP</item>
+
+        <!-- Most popular countries currencies -->
+        <item>USDPKR</item>
+        <item>EURPKR</item>
+        <item>USDNGN</item>
+        <item>EURNGN</item>
+        <item>USDUAH</item>
+        <item>EURUAH</item>
+        <item>RUBUAH</item>
+
+        <!-- Metals and cryptocurrencies -->
         <item>XAUGBP</item>
         <item>XAUUSD</item>
         <item>BTCUSD</item>

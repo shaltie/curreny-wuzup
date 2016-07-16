@@ -31,6 +31,13 @@
             android:onClick="onRadioButtonClicked">
         </RadioButton>
         <RadioButton
+            android:id="@+id/arabicZone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/arabic_wuzup"
+            android:onClick="onRadioButtonClicked">
+        </RadioButton>
+        <RadioButton
             android:id="@+id/customZoneSelect"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

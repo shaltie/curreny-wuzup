@@ -26,6 +26,7 @@ import org.json.JSONArray;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 public class OptionsActivity extends AppCompatActivity implements View.OnClickListener {
@@ -226,7 +227,13 @@ public class OptionsActivity extends AppCompatActivity implements View.OnClickLi
                     currency = arr[0].replaceAll(".*?(.?.?.?)?$", "$1");
                     condition = (arr[1].equals("<=")) ? getResources().getString(R.string.equal_or_less) : getResources().getString(R.string.equal_or_more);
                 }
-                String out = arr[0] + " " + condition + " " + arr[2] + " " + currency;
+                String out;
+                if(Locale.getDefault().getLanguage().equals("ar")){
+                    out = currency + " " + condition + " " + arr[2] + " " + arr[0];
+                }else{
+                    out = arr[0] + " " + condition + " " + arr[2] + " " + currency;
+                }
+
 
                 // add to array for render
                 activeWatchers.add(out);

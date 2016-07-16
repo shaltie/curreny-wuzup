@@ -6,6 +6,7 @@
     <string name="eur_wuzup">أسعار اليورو</string>
     <string name="rub_wuzup">أسعار الروبل الروسي</string>
     <string name="usd_wuzup">أسعار الدولار الأمريكي</string>
+    <string name="arabic_wuzup">أسعار العملات للدول العربية</string>
     <string name="wuzup">wuzup</string>
     <string name="config">اعدادات</string>
     <string name="update">تحديث</string>c
@@ -16,5 +17,19 @@
     <string name="custom_mode">وضع مخصص:</string>
     <string name="show_bitcoin_rate">عرض سعر البيتكوين</string>
     <string name="show_gold_rate">عرض سعر الذهب</string>
+
+    <string name="title_activity_options">OptionsActivity</string>
+    <string name="activity_push_notification_title">ضبط الإشعارات</string>
+    <string name="wuzup_notification_lead_text">قم بتحديد زوج العملات والسعر وسيقوم التطبيق بارسال إشعار عند وصول السعر إلى الرقم المحدد.</string>
+    <string name="notification_pairs_list_title">الشروط التي تم اضافتها</string>
+    <string name="enter_price">ادخل السعر</string>
+    <string name="add">اضافة</string>
+    <string name="watcher_delete_confirm_text">هل تريد حذف هذا الزوج من العملات؟</string>
+    <string name="data_incorrect">Data is incorrect</string>
+    <string name="equal_or_more">يساوي أو أكبر من</string>
+    <string name="equal_or_less"> يساوي أو أقل من</string>
+    <string name="close">Close</string>
+    <string name="cancel">إلغاء</string>
+    <string name="push_notification_title">Goal has been reached</string>
 
 </resources>

@@ -8,12 +8,25 @@
     <string name="ok">Ок</string>
     <string name="title_activity_config">Настройки виджета</string>
     <string name="action_settings">Настройки</string>
-    <string name="eur_wuzup">Че как евро</string>
-    <string name="rub_wuzup">Че как рубль</string>
-    <string name="usd_wuzup">Че как доллар</string>
+    <string name="eur_wuzup">Почем евро</string>
+    <string name="rub_wuzup">Почем рубль</string>
+    <string name="usd_wuzup">почем доллар</string>
     <string name="updated">Обновлено:</string>
     <string name="wuzup">wuzup</string>
     <string name="custom_mode">Свой вариант</string>
     <string name="show_bitcoin_rate">Показать курс Bitcoin</string>
     <string name="show_gold_rate">Показать курс золота</string>
+
+    <string name="title_activity_options">Настройки</string>
+    <string name="activity_push_notification_title">Центр уведомлений</string>
+    <string name="wuzup_notification_lead_text">Выберите валютную пару, условие и курс, и Вы получите уведомление когда валюта достигнет этого курса</string>
+    <string name="notification_pairs_list_title">Уже выбранные маячки:</string>
+    <string name="enter_price">Введите курс</string>
+    <string name="add">Add</string>
+    <string name="watcher_delete_confirm_text">Хотите удалить этот маячок?</string>
+    <string name="data_incorrect">Данные введены неверно</string>
+    <string name="equal_or_more">больше или равно</string>
+    <string name="equal_or_less">меньше или равно</string>
+    <string name="close">Закрыть</string>
+    <string name="push_notification_title">Цель достигнута</string>
 </resources>
