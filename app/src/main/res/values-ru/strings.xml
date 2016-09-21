@@ -29,4 +29,5 @@
     <string name="equal_or_less">меньше или равно</string>
     <string name="close">Закрыть</string>
     <string name="push_notification_title">Цель достигнута</string>
+    <string name="start_trade_forex">Торгуй на Forex</string>
 </resources>

@@ -27,6 +27,7 @@ public class CurrencyWidget extends AppWidgetProvider {
     SimpleDateFormat sdf = new SimpleDateFormat("dd MMMM HH:mm");
 
     final String LOG_TAG = "WIDGET";
+    final String FOREX_AFFILIATE_LINK = "http://forextime.com/register/open-account?partner_id=4803303";
     GetRates getRates;
     RemoteViews rv;
 
@@ -59,7 +60,10 @@ public class CurrencyWidget extends AppWidgetProvider {
         for (int i : appWidgetIds) {
             Log.v(LOG_TAG, "appWidgetIds: " + i);
             updateWidget(context, appWidgetManager, sp, i);
+            startBrowsing(context, appWidgetManager, i);
         }
+
+
 
     }
 
@@ -144,6 +148,22 @@ public class CurrencyWidget extends AppWidgetProvider {
         PendingIntent updPIntent = PendingIntent.getBroadcast(context,
                 appWidgetId, updIntent, 0);
         rv.setOnClickPendingIntent(R.id.BtnUpdate, updPIntent);
+
+    }
+
+    private void startBrowsing(Context ctx,
+                               AppWidgetManager appWidgetManager, int widgetID) {
+        RemoteViews widgetView = new RemoteViews(ctx.getPackageName(), R.layout.widget);
+        Uri uri = Uri.parse(FOREX_AFFILIATE_LINK);
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        PendingIntent pIntent = PendingIntent.getActivity(ctx, widgetID, intent, 0);
+        // viewID - our clickable view ID
+        widgetView.setOnClickPendingIntent(R.id.StartTradeForexBtn, pIntent);
+        //rv.setOnClickPendingIntent(R.id.StartTradeForexBtn, pIntent);
+
+        appWidgetManager.updateAppWidget(widgetID, widgetView);
+
+
     }
 
     void setGotoApp(RemoteViews rv, Context context, int appWidgetId) {

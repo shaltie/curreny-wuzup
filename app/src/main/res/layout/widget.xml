@@ -93,6 +93,22 @@
         android:layout_alignParentBottom="true"
         android:background="@drawable/footer_layout">
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/start_trade_forex"
+            android:id="@+id/StartTradeForexBtn"
+            android:background="@android:color/transparent"
+            android:padding="6dp"
+            android:textColor="@color/green_text"
+            android:minHeight="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:textAllCaps="false"
+            style="?android:attr/borderlessButtonStyle"
+            >
+        </Button>
+
         <ImageButton
             android:src="@drawable/notification_bell3"
             android:id="@+id/goToSettingsBtn"
