@@ -8,8 +8,8 @@ android {
         applicationId "com.my_widget.myelsewidget"
         minSdkVersion 14
         targetSdkVersion 22
-        versionCode 121
-        versionName "1.21"
+        versionCode 122
+        versionName "1.22"
     }
     buildTypes {
         release {
