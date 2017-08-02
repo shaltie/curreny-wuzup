@@ -39,7 +39,7 @@ public class GetRates {
         HttpClient httpclient = new DefaultHttpClient();
         Log.d(CAT_LOG, "bitcoin: " +  bitcoin);
         Log.d(CAT_LOG, "gold: " +  gold);
-        String Url = "http://skudr.ru/currency/api12.php?t="+CurrencyZone + "&b=" + bitcoin + "&g=" + gold + "&p=" + customPairs;
+        String Url = "http://skudr.ru/currency/api13.php?t="+CurrencyZone + "&b=" + bitcoin + "&g=" + gold + "&p=" + customPairs;
         HttpGet httpget = new HttpGet(Url);
         JSONArray res = null;
 

@@ -69,12 +69,19 @@ public class MyFactory implements RemoteViewsFactory {
 
     @Override
     public RemoteViews getViewAt(int position) {
+
         Log.d(LOG_CAT, "Factory getvw set_chngd: "+ ask.get(position) + " / " + bid.get(position));
 
         rView = new RemoteViews(context.getPackageName(),
                 R.layout.item);
         rView.setTextViewText(R.id.pair, pair.get(position));
-        rView.setTextViewText(R.id.askbid, ask.get(position) + " / " + bid.get(position));
+
+        if(bid.get(position) == null){
+            rView.setTextViewText(R.id.askbid, ask.get(position));
+        }else{
+            rView.setTextViewText(R.id.askbid, ask.get(position) + " / " + bid.get(position));
+        }
+
 
         int min = 0;
         int max = 1;
@@ -136,8 +143,15 @@ public class MyFactory implements RemoteViewsFactory {
             for (int i = 0; i < pairsArray.length(); i++) {
                 try{
                     String p = pairsArray.getJSONObject(i).getString("symbol");
-                    String a = pairsArray.getJSONObject(i).getString("ask");
-                    String b = pairsArray.getJSONObject(i).getString("bid");
+                    String a = "";
+                    String b = null;
+                    if(pairsArray.getJSONObject(i).has("ask")){
+                        a = pairsArray.getJSONObject(i).getString("ask");
+                        b = pairsArray.getJSONObject(i).getString("bid");
+                    }else if(pairsArray.getJSONObject(i).has("price")){
+                        a = pairsArray.getJSONObject(i).getString("price");
+                    }
+
 
                     Log.d("pairs", a + " " + b);
 

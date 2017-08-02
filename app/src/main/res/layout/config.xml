@@ -38,6 +38,13 @@
             android:onClick="onRadioButtonClicked">
         </RadioButton>
         <RadioButton
+            android:id="@+id/cryptoZone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/crypto_wuzup"
+            android:onClick="onRadioButtonClicked">
+        </RadioButton>
+        <RadioButton
             android:id="@+id/customZoneSelect"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

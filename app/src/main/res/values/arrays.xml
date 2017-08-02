@@ -53,11 +53,25 @@
         <item>EURUAH</item>
         <item>RUBUAH</item>
 
-        <!-- Metals and cryptocurrencies -->
+        <!-- Metals -->
         <item>XAUGBP</item>
         <item>XAUUSD</item>
+
+        <!-- Cryptocurrencies -->
         <item>BTCUSD</item>
         <item>BTCEUR</item>
+        <item>LTCUSD</item>
+        <item>LTCEUR</item>
+        <item>LTCBTC</item>
+        <item>ETHUSD</item>
+        <item>ETHEUR</item>
+        <item>ETHBTC</item>
+        <item>XRPUSD</item>
+        <item>XRPEUR</item>
+        <item>XRPBTC</item>
+        <item>ZECUSD</item>
+        <item>ZECEUR</item>
+        <item>ZECBTC</item>
     </string-array>
 
 

@@ -157,6 +157,9 @@ public class ConfigActivity extends Activity {
             case R.id.arabicZone:
                 selZone = "arabic";
                 break;
+            case R.id.cryptoZone:
+                selZone = "crypto";
+                break;
             case R.id.customZoneSelect:
                 selZone = "custom";
                 break;

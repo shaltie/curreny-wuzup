@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -82,6 +83,12 @@ public class OptionsActivity extends AppCompatActivity implements View.OnClickLi
         pairsList = Arrays.asList(getResources().getStringArray(R.array.config_custom_checkboxes));
         pairsListExtra = Arrays.asList(getResources().getStringArray(R.array.config_custom_checkboxes));
 
+
+        SharedPreferences p = PreferenceManager.getDefaultSharedPreferences(this);
+
+        boolean firstRun = p.getBoolean("first_run", true);
+        p.edit().putBoolean("first_run", false).commit();
+
         getRates = new GetRates();
 
 
@@ -91,14 +98,20 @@ public class OptionsActivity extends AppCompatActivity implements View.OnClickLi
 
                 for (int i=0;i<pairsArray.length();i++){
                     try{
-                        String p = pairsArray.getJSONObject(i).getString("symbol");
-                        String a = pairsArray.getJSONObject(i).getString("ask");
-                        String currency = p.replaceAll(".*?(.?.?.?)?$", "$1");
-                        int pos = pairsListExtra.indexOf(p);
+                        String pa = pairsArray.getJSONObject(i).getString("symbol");
+                        String a = "";
+                        if (pairsArray.getJSONObject(i).has("ask")) {
+                            a = pairsArray.getJSONObject(i).getString("ask");
+                        }
+                        if (pairsArray.getJSONObject(i).has("price")) {
+                            a = pairsArray.getJSONObject(i).getString("price");
+                        }
+                        String currency = pa.replaceAll(".*?(.?.?.?)?$", "$1");
+                        int pos = pairsListExtra.indexOf(pa);
 
                         if(pos > -1){
                             //pairsList.set(i, p);
-                            pairsListExtra.set(pos, p + " ("+a+" "+currency+")");
+                            pairsListExtra.set(pos, pa + " ("+a+" "+currency+")");
                         }
 
                     }catch (Exception e){
